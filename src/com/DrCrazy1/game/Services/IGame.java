@@ -1,13 +1,11 @@
-package com.DrCrazy.game.Services;
+package com.DrCrazy1.game.Services;
 
 public interface IGame {
     int updateBoard(int y, int x, int action);
 
-    IGameboard getGameboard();
+    IField[][] getGameboard();
 
     int getMineCount();
-
-    int[] getBoardSize();
 
     void revealAll();
 }

@@ -1,4 +1,4 @@
-package com.DrCrazy.game.Services;
+package com.DrCrazy1.game.Services;
 
 public class Game implements IGame {
 
@@ -9,16 +9,8 @@ public class Game implements IGame {
     }
 
     @Override
-    public IGameboard getGameboard() {
-        return gameBoard;
-    }
-
-    @Override
-    public int[] getBoardSize() {
-        int[] size = new int[2];
-        size[0] = gameBoard.getRowLength();
-        size[1] = gameBoard.getColumnLength();
-        return size;
+    public IField[][] getGameboard() {
+        return gameBoard.getBoard();
     }
 
     @Override

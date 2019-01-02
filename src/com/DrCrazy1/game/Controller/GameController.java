@@ -1,7 +1,7 @@
-package com.DrCrazy.game.Controller;
+package com.DrCrazy1.game.Controller;
 
-import com.DrCrazy.game.Services.*;
-import com.DrCrazy.game.View.*;
+import com.DrCrazy1.game.Services.*;
+import com.DrCrazy1.game.View.*;
 
 public class GameController {
     private Screen screen;

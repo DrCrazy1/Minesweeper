@@ -1,4 +1,4 @@
-package com.DrCrazy.game.Services;
+package com.DrCrazy1.game.Services;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -50,6 +50,11 @@ public class Gameboard implements IGameboard {
                 }
             }
         }
+    }
+
+    @Override
+    public IField[][] getBoard() {
+        return board;
     }
 
     @Override
