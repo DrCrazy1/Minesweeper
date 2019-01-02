@@ -23,6 +23,7 @@ public class Screen extends JFrame {
     public void showFrame() {
         this.setTitle("Minesweeper");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(400, 400);
         //Location
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setResizable(false);
