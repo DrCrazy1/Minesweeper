@@ -1,7 +1,7 @@
 package com.DrCrazy1.game.View;
 
-import com.DrCrazy1.game.Controller.GameController;
-import com.DrCrazy1.game.Services.IGame;
+import com.DrCrazy1.game.Controller.*;
+import com.DrCrazy1.game.Services.*;
 
 import javax.swing.*;
 import java.awt.*;
