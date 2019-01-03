@@ -1,7 +1,6 @@
 package com.DrCrazy1.game.View;
 
 import com.DrCrazy1.game.Services.IGame;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -25,7 +24,23 @@ public class Board extends JPanel {
                 int x = col * sizeTile;
                 int y = row * sizeTile;
                 g.drawRect(x, y, sizeTile, sizeTile);
+                if (!game.getGameboard()[row][col].isRevealed()) {
+                    drawCover(g, x + 1, y + 1, sizeTile - 2);
+                    if (game.getGameboard()[row][col].isFlagged()) {
+                        g.drawString("F", x + sizeTile / 2, y + sizeTile / 2);
+                    }
+                }
+                int fieldValue = game.getGameboard()[row][col].getValue();
+                if (fieldValue > 0 && game.getGameboard()[row][col].isRevealed()) {
+                    g.drawString(String.valueOf(fieldValue), x + sizeTile / 2, y + sizeTile / 2);
+                }
             }
         }
+    }
+
+    private void drawCover(Graphics g, int x, int y, int width) {
+        g.setColor(Color.GRAY);
+        g.fillRect(x, y, width, width);
+        g.setColor(Color.BLACK);
     }
 }
