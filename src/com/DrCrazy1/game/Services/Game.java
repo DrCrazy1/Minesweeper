@@ -3,9 +3,11 @@ package com.DrCrazy1.game.Services;
 public class Game implements IGame {
 
     private IGameboard gameBoard;
+    private int mineCount;
 
     public Game(int[] setup) {
-        gameBoard = new Gameboard(setup[0], setup[1]);
+        mineCount = setup[0] * setup[1] / 5;
+        gameBoard = new Gameboard(setup[0], setup[1], mineCount);
     }
 
     @Override
@@ -22,6 +24,7 @@ public class Game implements IGame {
     public int updateBoard(int y, int x, int action) {
         //Flag field
         if (action == 1) {
+            mineCount += gameBoard.isFieldFlagged(y, x) == false ? 1 : -1;
             gameBoard.flagField(y, x);
             return 0;
         }
@@ -70,6 +73,6 @@ public class Game implements IGame {
 
     @Override
     public int getMineCount() {
-        return gameBoard.getMineCount();
+        return mineCount;
     }
 }

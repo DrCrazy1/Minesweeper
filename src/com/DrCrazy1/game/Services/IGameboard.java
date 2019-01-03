@@ -3,12 +3,6 @@ package com.DrCrazy1.game.Services;
 public interface IGameboard {
     IField[][] getBoard();
 
-    int getRowLength();
-
-    int getColumnLength();
-
-    int getMineCount();
-
     void revealAll();
 
     void flagField(int y, int x);

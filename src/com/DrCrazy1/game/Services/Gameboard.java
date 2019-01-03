@@ -5,12 +5,10 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Gameboard implements IGameboard {
     private IField[][] board;
     private int mines;
-    private int mineCount;
 
-    public Gameboard(int cols, int rows) {
+    public Gameboard(int cols, int rows, int mine) {
         board = new Field[cols][rows];
-        mines = (cols * rows) / 5;
-        mineCount = mines;
+        mines = mine;
         createBoard();
     }
 
@@ -79,24 +77,8 @@ public class Gameboard implements IGameboard {
     }
 
     @Override
-    public int getRowLength() {
-        return board.length;
-    }
-
-    @Override
-    public int getColumnLength() {
-        return board[0].length;
-    }
-
-    @Override
     public void flagField(int y, int x) {
         board[y][x].setFlag();
-        mineCount += board[y][x].isFlagged() ? -1 : 1;
-    }
-
-    @Override
-    public int getMineCount() {
-        return mineCount;
     }
 
     @Override

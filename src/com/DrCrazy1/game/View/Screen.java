@@ -9,6 +9,7 @@ import java.awt.*;
 public class Screen extends JFrame {
 
     private JPanel board;
+    private JPanel menu;
     private JLabel mineCount;
     private JButton startButton;
     private JLabel time;
@@ -31,18 +32,35 @@ public class Screen extends JFrame {
         int y = (int) ((dim.getHeight() - this.getHeight()) / 2);
         this.setLocation(x, y);
         //content area
-        mineCount = new JLabel(String.valueOf(game.getMineCount()));
-        startButton = new JButton();
-        time = new JLabel("00:00");
+        //Menu
+        makeMenu();
+        //Board
         board = new JPanel();
+        board.setLayout(null);
         board.addMouseListener(
-                new FieldClickListener((int) dim.getWidth(), (int) dim.getHeight(), controller));
+                new FieldClickListener(controller));
         board.add(new Board(game));
-        this.setContentPane(mineCount);
-        this.getContentPane().add(startButton);
-        this.getContentPane().add(time);
+        board.setBounds(10, 40, 380, 360);
+        //Adding to ContentPane
+        this.getContentPane().add(menu);
         this.getContentPane().add(board);
-
+        //this.pack();
+        //Show JFrame
         this.setVisible(true);
+    }
+
+    private void makeMenu() {
+        menu = new JPanel();
+        menu.setLayout(null);
+        mineCount = new JLabel(String.valueOf(game.getMineCount()));
+        mineCount.setBounds(10, 10, 20, 20);
+        menu.add(mineCount);
+        startButton = new JButton("X");
+        startButton.setBounds(190, 10, 20, 20);
+        menu.add(startButton);
+        time = new JLabel("00:00");
+        time.setBounds(350, 10 ,40, 20);
+        menu.add(time);
+        menu.setBounds(0, 0, 400, 40);
     }
 }
