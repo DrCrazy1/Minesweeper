@@ -162,8 +162,10 @@ public class Gameboard implements IGameboard {
                 int col = x + xoff;
                 if (isOnBoard(row, col)) {
                     neighbor = board[row][col];
-                    if (!neighbor.isRevealed() && !neighbor.isFlagged() && neighbor.getValue() > -1) {
+                    if (!neighbor.isRevealed() && !neighbor.isFlagged() && neighbor.getValue() == 0) {
                         revealRelatedFields(row, col);
+                    } else if (neighbor.getValue() > 0) {
+                        neighbor.reveal();
                     }
                 }
             }
