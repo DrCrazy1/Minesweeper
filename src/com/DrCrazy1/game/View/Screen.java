@@ -3,6 +3,8 @@ package com.DrCrazy1.game.View;
 import com.DrCrazy1.game.Controller.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Screen extends JFrame {
 
@@ -21,7 +23,7 @@ public class Screen extends JFrame {
         this.setTitle("Minesweeper");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(400, 450);
-        //Location
+        //Location to center screen
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setResizable(false);
         int x = (int) ((dim.getWidth() - this.getWidth()) / 2);
@@ -48,7 +50,12 @@ public class Screen extends JFrame {
         mineCount = new JLabel(String.valueOf(controller.getGame().getMineCount()));
         menu.add(mineCount);
         startButton = new JButton();
-        startButton.addActionListener(new ButtonClickListener(controller));
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.reset();
+            }
+        });
         menu.add(startButton);
         time = new JLabel("00:00");
         menu.add(time);
