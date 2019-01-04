@@ -1,8 +1,6 @@
 package com.DrCrazy1.game.View;
 
 import com.DrCrazy1.game.Controller.*;
-import com.DrCrazy1.game.Services.*;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,17 +12,15 @@ public class Screen extends JFrame {
     private JButton startButton;
     private JLabel time;
     private GameController controller;
-    private IGame game;
 
-    public Screen(GameController controller, IGame game) {
-        this.controller = controller;
-        this.game = game;
+    public void setController(GameController c) {
+        controller = c;
     }
 
     public void showFrame() {
         this.setTitle("Minesweeper");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(400, 400);
+        this.setSize(400, 450);
         //Location
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setResizable(false);
@@ -32,35 +28,29 @@ public class Screen extends JFrame {
         int y = (int) ((dim.getHeight() - this.getHeight()) / 2);
         this.setLocation(x, y);
         //content area
-        //Menu
         makeMenu();
-        //Board
-        board = new JPanel();
-        board.setLayout(null);
-        board.addMouseListener(
-                new FieldClickListener(controller));
-        board.add(new Board(game));
-        board.setBounds(10, 40, 380, 360);
+        makeBoard();
         //Adding to ContentPane
-        this.getContentPane().add(menu);
-        this.getContentPane().add(board);
-        //this.pack();
+        this.getContentPane().add(menu, BorderLayout.PAGE_START);
+        this.getContentPane().add(board, BorderLayout.CENTER);
         //Show JFrame
         this.setVisible(true);
     }
 
+    private void makeBoard() {
+        board = new Board(controller.getGame());
+        board.addMouseListener(
+                new FieldClickListener(controller));
+    }
+
     private void makeMenu() {
-        menu = new JPanel();
-        menu.setLayout(null);
-        mineCount = new JLabel(String.valueOf(game.getMineCount()));
-        mineCount.setBounds(10, 10, 20, 20);
+        menu = new JPanel(new FlowLayout(FlowLayout.CENTER, 100, 10));
+        mineCount = new JLabel(String.valueOf(controller.getGame().getMineCount()));
         menu.add(mineCount);
-        startButton = new JButton("X");
-        startButton.setBounds(190, 10, 20, 20);
+        startButton = new JButton();
+        startButton.addActionListener(new ButtonClickListener(controller));
         menu.add(startButton);
         time = new JLabel("00:00");
-        time.setBounds(350, 10 ,40, 20);
         menu.add(time);
-        menu.setBounds(0, 0, 400, 40);
     }
 }
