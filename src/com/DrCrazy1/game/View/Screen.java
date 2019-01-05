@@ -44,10 +44,10 @@ public class Screen extends JFrame {
     }
 
     private void makeMenu() {
-        menu = new JPanel(new FlowLayout(FlowLayout.CENTER, 100, 10));
+        menu = new JPanel(new FlowLayout(FlowLayout.CENTER, 90, 10));
         mineCount = new JLabel(String.valueOf(controller.getGame().getMineCount()));
         menu.add(mineCount);
-        startButton = new JButton();
+        startButton = new JButton("Smile");
         startButton.addActionListener(e -> controller.reset());
         menu.add(startButton);
         time = new JLabel("00:00");
@@ -60,5 +60,20 @@ public class Screen extends JFrame {
 
     public void setController(GameController gameController) {
         controller = gameController;
+    }
+
+    public void changeText(int gamestate) {
+        String result;
+        switch (gamestate) {
+            default: result = "Smile";
+            break;
+            case -1: result = "Lose";
+            break;
+            case 0: result = "Smile";
+            break;
+            case 1: result = "WIN";
+            break;
+        }
+        startButton.setText(result);
     }
 }

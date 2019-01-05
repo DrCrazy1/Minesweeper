@@ -31,6 +31,10 @@ public class GameController {
         if (gameState < 0) {
             game.revealAll();
         }
+        if (gameState != 0) {
+            screen.changeText(gameState);
+        }
+
         screen.repaint();
     }
 
@@ -38,6 +42,8 @@ public class GameController {
         game = new Game(new int[]{15, 12});
         screen.setController(this);
         gameState = 0;
+        screen.updateMineCount(game.getMineCount());
+        screen.changeText(gameState);
         screen.showFrame();
     }
 }
