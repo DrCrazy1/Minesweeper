@@ -24,7 +24,7 @@ public class Game implements IGame {
     public int updateBoard(int y, int x, int action) {
         //Flag field
         if (action == 1) {
-            mineCount += gameBoard.isFieldFlagged(y, x) == false ? 1 : -1;
+            mineCount += gameBoard.isFieldFlagged(y, x) == false ? -1 : 1;
             gameBoard.flagField(y, x);
             return 0;
         }
