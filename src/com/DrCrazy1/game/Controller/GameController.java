@@ -36,7 +36,7 @@ public class GameController {
 
     public void reset() {
         game = new Game(new int[]{15, 12});
-        //ToDo: refreshing screen board
+        screen.setController(this);
         gameState = 0;
         screen.showFrame();
     }

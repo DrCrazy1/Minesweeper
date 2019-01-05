@@ -57,4 +57,8 @@ public class Screen extends JFrame {
     public void updateMineCount(int newNumber) {
         mineCount.setText(String.valueOf(newNumber));
     }
+
+    public void setController(GameController gameController) {
+        controller = gameController;
+    }
 }
