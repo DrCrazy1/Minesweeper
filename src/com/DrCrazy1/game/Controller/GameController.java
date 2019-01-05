@@ -9,9 +9,8 @@ public class GameController {
     private int gameState;
 
     public GameController() {
-        game = new Game(new int[]{15, 10});
-        screen = new Screen();
-        screen.setController(this);
+        game = new Game(new int[]{15, 12});
+        screen = new Screen(this);
         gameState = 0;
         screen.showFrame();
     }
@@ -26,6 +25,9 @@ public class GameController {
 
     public void update(int y, int x, int action) {
         gameState = game.updateBoard(y, x, action);
+        if (action == 1) {
+            screen.updateMineCount(game.getMineCount());
+        }
         if (gameState < 0) {
             game.revealAll();
         }
@@ -33,8 +35,8 @@ public class GameController {
     }
 
     public void reset() {
-        game = new Game(new int[]{15, 10});
-        screen.setController(this);
+        game = new Game(new int[]{15, 12});
+        //ToDo: refreshing screen board
         gameState = 0;
         screen.showFrame();
     }
